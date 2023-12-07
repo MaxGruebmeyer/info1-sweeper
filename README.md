@@ -1,5 +1,6 @@
 # info1-sweeper
 **DEADLINE: 31.01.2024**
+
 Short summary: Lorem ispum dolor sed...
 
 ## Architecture choices

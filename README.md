@@ -23,5 +23,5 @@ Deps needed for building, testing and running go here!
 
 ### Optional features for later
 - Give the user an additional life, if he solves a floating point number conversion -> Needs floating point conversion tool!
-- Make a web interface without any additional libraries via the unistd socket api and text templating into an html document
+- Make a web interface without any additional libraries via the unistd socket api and text templating into an html document -> Needs own webserver and templating engine at least. Can one do it without JS? Make sure to limit potential attack vectors in the backend! -> Sanitize user input, as little memory allocation as possible (buffer overflow...), limit permissions and run everything in a docker container (without mounts and in a seperate network if possible)
 - Host said web interface on AWS incl. automatic deployment on successful CI with terraform IaC

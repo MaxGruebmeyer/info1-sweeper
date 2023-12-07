@@ -20,6 +20,8 @@ const uint8_t OPEN_BIT = 1 << 2;
 const uint8_t FLAG_BIT = 1 << 1;
 const uint8_t EXPLOSIVE_BIT = 1;
 
+uint16_t non_explosive_count = 0;
+
 static uint8_t *get_field(const uint8_t x, const uint8_t y)
 {
     if (x >= FIELD_SIZE || y >= FIELD_SIZE) {
@@ -39,6 +41,10 @@ void init()
     for (int i = 0; i < FIELD_SIZE; i++) {
         for (int j = 0; j < FIELD_SIZE; j++) {
             map[i][j] = generate_explosive_bit();
+
+            if (!(map[i][j] & EXPLOSIVE_BIT)) {
+                non_explosive_count++;
+            }
         }
     }
 
@@ -61,8 +67,14 @@ void unflag(const uint8_t x, const uint8_t y)
 
 uint8_t open(const uint8_t x, const uint8_t y)
 {
+    uint8_t explosive;
     uint8_t *field = get_field(x, y);
     *field = *field | OPEN_BIT;
 
-    return *field & EXPLOSIVE_BIT;
+    explosive = *field & EXPLOSIVE_BIT;
+    if (!explosive) {
+        non_explosive_count--;
+    }
+
+    return explosive;
 }

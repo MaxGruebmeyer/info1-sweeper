@@ -31,7 +31,7 @@ static uint8_t *get_field(const uint8_t x, const uint8_t y)
 }
 
 static uint8_t generate_explosive_bit() {
-    return (rand() % EXPLOSION_PROBABILITY) == 0 ? EXPLOSIVE_BIT : 1;
+    return (rand() % EXPLOSION_PROBABILITY) == 0 ? EXPLOSIVE_BIT : 0;
 }
 
 void init()

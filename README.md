@@ -10,7 +10,8 @@ Describe some choices you made along the way here
 Deps needed for building, testing and running go here!
 
 ## TODO
-- Add build (make? ninja? cmake? taskfile? custom?)
+- Add build tool (make? ninja? cmake? taskfile? custom?)
+- Also add short custom script that compiles all files via `gcc -Wall -Wextra -ansi -pedantic` and spits out an executable so the tutors are happy :)
 - Add GitHub build pipeline for branches (pull requests, master pushes) incl. build, running tests and Discord Hook for notifications
 - Add unit tests with gtest (googletest) - Needs C++ Compiler? If so -> Dependencies
 

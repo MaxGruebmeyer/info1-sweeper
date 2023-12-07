@@ -13,6 +13,8 @@ Deps needed for building, testing and running go here!
 - Add unit tests with gtest (googletest) - Needs C++ Compiler? If so -> Dependencies
 
 ### Features
+- Make minesweeper field non-quadratic
+- Allow configuration of field size via cmd args but limit it to 80x24 characters (and therefore a smaller or equal field?) -> Do we need additional chars, e.g. like in chess? Then the board would have to be smaller still!
 - First field clicked should never return an explosive(?)
 - Additional features as specified in the exercise
 

@@ -9,7 +9,7 @@ Deps needed for building, testing and running go here!
 
 ## TODO
 - Add build (make? ninja? cmake? taskfile? custom?)
-- Add GitHub build pipeline for branches (pull requests, master pushes) incl. Discord Hook for notifications
+- Add GitHub build pipeline for branches (pull requests, master pushes) incl. build, running tests and Discord Hook for notifications
 - Add unit tests with gtest (googletest) - Needs C++ Compiler? If so -> Dependencies
 
 ### Features

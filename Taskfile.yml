@@ -8,13 +8,11 @@ tasks:
     vars:
       CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
-      OUTPUT_FOLDER_CONTENT:
-        sh: find -type f -iwholename './bin/*.o' | xargs echo
     cmds:
-      - mkdir -p ./bin
+      - mkdir -p {{ .OUTPUT_FOLDER }}
       - for: sources
         cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o $(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed "s/src/{{ .OUTPUT_FOLDER }}/") -c
-      - gcc {{ .CFLAGS }} -o ./bin/minesweeper.out $(find -type f -iwholename './bin/*.o' | xargs echo)
+      - gcc {{ .CFLAGS }} -o {{ .OUTPUT_FOLDER }}/minesweeper.out $(find -type f -iwholename './{{ .OUTPUT_FOLDER }}/*.o' | xargs echo)
     generates:
       - bin/minesweeper.out
       - bin/*.o

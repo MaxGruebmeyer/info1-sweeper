@@ -1,6 +1,15 @@
 version: '3'
 
 tasks:
+  build:
+    vars:
+      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
+    cmds:
+      - task build-linux OUTPUT_FOLDER="{{ .OUTPUT_FOLDER }}" CFLAGS="{{ .CFLAGS }}"
+      - task build-windows OUTPUT_FOLDER="{{ .OUTPUT_FOLDER }}" CFLAGS="{{ .CFLAGS }}"
+    silent: true
+
   build-linux:
     platforms: [linux]
     sources:
@@ -16,7 +25,13 @@ tasks:
     generates:
       - bin/minesweeper.out
       - bin/*.o
+
   build-windows:
     platforms: [windows]
+    sources:
+      - src/*.c
+    vars:
+      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - echo 'Windows-Build is currently not implemented!'

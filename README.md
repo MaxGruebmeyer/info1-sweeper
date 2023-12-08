@@ -18,19 +18,14 @@ However, we have introduced several tools to make our life easier:
 ### Building via Taskfile
 
 The recommended way to build our project is via our project's [Taskfile](https://taskfile.dev/).
-
-- For Windows: Run `task build-windows` (not yet implemented)
-- For Linux: Run `task build-linux`
-- For MacOS: `task build-linux` should run on Mac as well. However this has not yet been tested yet due to a lack of Macs on our team.
-You might need to comment out the `platform: [linux]` line in the `build-linux` task in the `Taskfile.yml`, but apart from that it should work.
-
-All of the above build to `./bin`, where you can find the executable `./bin/minesweeper.out`, which you can use to run the program.
+Just run `task build` to build src to `./bin`.
+This also creates the executable `./bin/minesweeper.out`, which you can use to run the program.
 
 #### Open Taskfile Todos
 
 - TODO (GM): Implement one overarching build task?
 - TODO (GM): Implement & test Windows build
-- TODO (GM): Find someone with a mac to test build-linux!
+- TODO (GM): Find someone with a MacOs (Samu?) to test build-linux!
 - TODO (GM): Implement a run task!
 
 ### Building via Bash Script

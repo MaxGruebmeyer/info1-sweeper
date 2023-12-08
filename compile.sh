@@ -11,8 +11,8 @@ cd $dir
 mkdir -p $out
 
 compile_cmd="gcc $cflags -o $out/a.out"
-for file in *.c; do
-    obj_file=$(echo "$out/$file" | sed -r 's/\.c$/\.o/')
+for file in src/*.c; do
+    obj_file=$(echo $file | sed -r 's/\.c$/\.o/' | sed "s/src/$out/")
     gcc $cflags $file -o $obj_file -c
 
     compile_cmd="$compile_cmd $obj_file"

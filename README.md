@@ -52,10 +52,6 @@ If you're unsure how to do so a look into `compile.sh` might provide some guidan
 
 Describe some choices you made along the way here
 
-## Dependencies
-
-Deps needed for building, testing and running go here!
-
 ## TODO
 
 - Add build tool (make? ninja? cmake? taskfile? custom?)

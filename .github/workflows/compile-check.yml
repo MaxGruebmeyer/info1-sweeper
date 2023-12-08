@@ -4,15 +4,12 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - name: print pwd
-        run: pwd
+      - uses: actions/checkout@v4
+      - name: install go-task
+        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
       - name: print dir1
         run: ls -lA .
       - name: print dir2
-        run: ls -lA ..
-          # - name: print dir content
-          #   run: find / -type f -name 'Taskfile*' 2> /dev/null
-      - name: install go-task
-        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+        run: ls -lA ./info1-sweeper
       - name: task-build
-        run: cd .. && ./info1-sweeper/bin/task build
+        run: ./info1-sweeper/bin/task build

@@ -5,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Output path
+        run: echo $PATH
       - name: install go-task
-        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d && cp ./bin/task . && PATH="$PATH:$(pwd)"
-      - name: print bin
-        run: ls -lA ./bin
+        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/bin
       - name: print dir
         run: ls -lA .
       - name: task-build

@@ -17,7 +17,7 @@ However, we have introduced several tools to make our life easier:
 
 ### Building via Taskfile
 
-The recommended way to build our project is via our project's [Taskfile](https://taskfile.dev/).
+The recommended way to build our project on Windows or Linux is via our project's [Taskfile](https://taskfile.dev/).
 Just run `task build` to build src to `./bin`.
 This also creates the executable `./bin/minesweeper.out`, which you can use to run the program.
 

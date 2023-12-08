@@ -11,4 +11,6 @@ int main()
     unflag(1, 1);
 
     printf("Hello from the end of main!\n");
+
+    return 0;
 }

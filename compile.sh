@@ -10,7 +10,7 @@ out='bin'
 cd $dir
 mkdir -p $out
 
-compile_cmd="gcc $cflags -o $out/a.out"
+compile_cmd="gcc $cflags -o $out/minesweeper.out"
 for file in src/*.c; do
     obj_file=$(echo $file | sed -r 's/\.c$/\.o/' | sed "s/src/$out/")
     gcc $cflags $file -o $obj_file -c

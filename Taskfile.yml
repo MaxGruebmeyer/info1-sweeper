@@ -42,6 +42,11 @@ tasks:
       CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
+      - mkdir -p '{{ .OUTPUT_FOLDER }}'
+        # TODO (GM): Implement for windows!
+        # - for: sources
+        #   cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o "$(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
+        # - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find -type f -iwholename './{{ .OUTPUT_FOLDER }}/*.o' | xargs echo)
       - echo 'Windows-Build is currently not implemented!'
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'

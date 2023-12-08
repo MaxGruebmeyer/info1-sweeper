@@ -3,6 +3,14 @@
 
 Short summary: Lorem ispum dolor sed...
 
+## Building & running
+If you have access to Bash you can compile the whole project by running `./compile.sh` which builds to `./bin`.
+Afterwards execute `./bin/a.out` to run the program.
+
+If you do not have access to bash you will have to build the files by yourself.
+
+TODO (GM): Introduce Taskfile for os-independent builds!
+
 ## Architecture choices
 Describe some choices you made along the way here
 

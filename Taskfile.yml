@@ -31,8 +31,8 @@ tasks:
         cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o "$(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
       - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find -type f -iwholename './{{ .OUTPUT_FOLDER }}/*.o' | xargs echo)
     generates:
-      - bin/minesweeper.out
-      - bin/*.o
+      - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
+      - '{{ .OUTPUT_FOLDER }}/*.o'
 
   build-windows:
     platforms: [windows]
@@ -43,3 +43,6 @@ tasks:
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - echo 'Windows-Build is currently not implemented!'
+    generates:
+      - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
+      - '{{ .OUTPUT_FOLDER }}/*.o'

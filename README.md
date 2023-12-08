@@ -21,6 +21,13 @@ The recommended way to build our project is via our project's [Taskfile](https:/
 Just run `task build` to build src to `./bin`.
 This also creates the executable `./bin/minesweeper.out`, which you can use to run the program.
 
+Optionally you can pass the following parameters to `task build`:
+
+- OUTPUT_FOLDER: The folder to build to. Falls back to the $OUTPUT_FOLDER environment variable or 'bin' if no environment variable is set.
+- CFLAGS: The compiler flags to use. Falls back to the $CFLAGS environment variable or '-Wall -Wextra -ansi -pedantic' if no environment variable is set.
+
+Provide them in the following way: `task build OUTPUT_FOLDER='my-output-folder' CFLAGS='-ansi'`
+
 #### Open Taskfile Todos
 
 - TODO (GM): Implement one overarching build task?

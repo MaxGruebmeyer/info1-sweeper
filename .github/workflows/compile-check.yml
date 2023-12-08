@@ -6,9 +6,13 @@ jobs:
     steps:
       - name: print pwd
         run: pwd
-      - name: print dir content
-        run: find / -type f -name 'Taskfile*' 2> /dev/null
+      - name: print dir1
+        run: ls -lA .
+      - name: print dir2
+        run: ls -lA ..
+          # - name: print dir content
+          #   run: find / -type f -name 'Taskfile*' 2> /dev/null
       - name: install go-task
         run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
       - name: task-build
-        run: ./bin/task build
+        run: cd .. && ./info1-sweeper/bin/task build

@@ -25,9 +25,9 @@ This also creates the executable `./bin/minesweeper.out`, which you can use to r
 
 Optionally you can pass the following parameters to `task build` or `task run`:
 
-- OUTPUT_FOLDER: The folder to build to. Falls back to the $OUTPUT_FOLDER environment variable or 'bin' if no environment variable is set.
+- `OUTPUT_FOLDER`: The folder to build to. Falls back to the `$OUTPUT_FOLDER` environment variable or `bin` if no environment variable is set.
 Note that this cannot handle folders containing spaces!
-- CFLAGS: The compiler flags to use. Falls back to the $CFLAGS environment variable or '-Wall -Wextra -Werror -ansi -pedantic' if no environment variable is set.
+- `CFLAGS`: The compiler flags to use. Falls back to the `$CFLAGS` environment variable or `-Wall -Wextra -Werror -ansi -pedantic` if no environment variable is set.
 
 Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CFLAGS='-ansi'`
 

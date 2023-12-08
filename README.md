@@ -18,15 +18,18 @@ However, we have introduced several tools to make our life easier:
 ### Building via Taskfile
 
 The recommended way to build our project on Windows or Linux is via our project's [Taskfile](https://taskfile.dev/).
-Just run `task build` to build src to `./bin`.
+Then you can build and run the project with a single command - `task run`.
+
+Alternatively, if you just want to build the project you can run `task build` to build the sourcecode to `./bin`.
 This also creates the executable `./bin/minesweeper.out`, which you can use to run the program.
 
-Optionally you can pass the following parameters to `task build`:
+Optionally you can pass the following parameters to `task build` or `task run`:
 
 - OUTPUT_FOLDER: The folder to build to. Falls back to the $OUTPUT_FOLDER environment variable or 'bin' if no environment variable is set.
+Note that this cannot handle folders containing spaces!
 - CFLAGS: The compiler flags to use. Falls back to the $CFLAGS environment variable or '-Wall -Wextra -ansi -pedantic' if no environment variable is set.
 
-Provide them in the following way: `task build OUTPUT_FOLDER='my-output-folder' CFLAGS='-ansi'`
+Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CFLAGS='-ansi'`
 
 #### Open Taskfile Todos
 

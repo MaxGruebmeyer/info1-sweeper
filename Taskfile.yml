@@ -1,7 +1,24 @@
 version: '3'
 
 tasks:
-  hello:
+  build-linux:
+    platforms: [linux]
+    sources:
+      - src/*.c
+    vars:
+      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
+      OUTPUT_FOLDER_CONTENT:
+        sh: find -type f -iwholename './bin/*.o' | xargs echo
     cmds:
-      - echo 'Hello World from Taskfile'
-    silent: true
+      - mkdir -p ./bin
+      - for: sources
+        cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o $(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed "s/src/{{ .OUTPUT_FOLDER }}/") -c
+      - gcc {{ .CFLAGS }} -o ./bin/minesweeper.out $(find -type f -iwholename './bin/*.o' | xargs echo)
+    generates:
+      - bin/minesweeper.out
+      - bin/*.o
+  build-windows:
+    platforms: [windows]
+    cmds:
+      - echo 'Windows-Build is currently not implemented!'

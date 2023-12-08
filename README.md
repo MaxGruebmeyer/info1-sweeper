@@ -28,6 +28,7 @@ All of the above build to `./bin`, where you can find the executable `./bin/mine
 
 #### Open Taskfile Todos
 
+- TODO (GM): Implement one overarching build task?
 - TODO (GM): Implement & test Windows build
 - TODO (GM): Find someone with a mac to test build-linux!
 - TODO (GM): Implement a run task!

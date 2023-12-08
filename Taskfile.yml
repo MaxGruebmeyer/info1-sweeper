@@ -3,7 +3,7 @@ version: '3'
 tasks:
   run:
     vars:
-      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - task build OUTPUT_FOLDER='{{ .OUTPUT_FOLDER }}' CFLAGS='{{ .CFLAGS }}'
@@ -11,7 +11,7 @@ tasks:
 
   build:
     vars:
-      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - task build-linux OUTPUT_FOLDER='{{ .OUTPUT_FOLDER }}' CFLAGS='{{ .CFLAGS }}'
@@ -23,7 +23,7 @@ tasks:
     sources:
       - src/*.c
     vars:
-      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - mkdir -p '{{ .OUTPUT_FOLDER }}'
@@ -39,7 +39,7 @@ tasks:
     sources:
       - src/*.c
     vars:
-      CFLAGS: '{{ default "-Wall -Wextra -ansi -pedantic" .CFLAGS }}'
+      CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - mkdir -p '{{ .OUTPUT_FOLDER }}'

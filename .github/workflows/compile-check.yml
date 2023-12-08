@@ -4,6 +4,8 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
+      - name: print dir content
+        run: ls -lA
       - name: install go-task
         run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
       - name: task-build

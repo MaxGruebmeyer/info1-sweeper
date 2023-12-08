@@ -10,6 +10,8 @@ int main()
     flag(1, 1);
     unflag(1, 1);
 
+    /*test from me, Marwin*/
+
     printf("Hello from the end of main!\n");
 
     return 0;

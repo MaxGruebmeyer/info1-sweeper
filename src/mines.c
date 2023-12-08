@@ -1,3 +1,5 @@
+/* TODO (GM): Remove stdio header and print statements here! -> Introduce real logging? */
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <time.h>
@@ -38,8 +40,14 @@ static uint8_t generate_explosive_bit() {
 
 void init()
 {
-    for (int i = 0; i < FIELD_SIZE; i++) {
-        for (int j = 0; j < FIELD_SIZE; j++) {
+    int i = 0;
+
+    /* TODO (GM): Only here to test compilation - remove later! */
+    printf("Hello from field init!\n");
+
+    for (; i < FIELD_SIZE; i++) {
+        int j = 0;
+        for (; j < FIELD_SIZE; j++) {
             map[i][j] = generate_explosive_bit();
 
             if (!(map[i][j] & EXPLOSIVE_BIT)) {
@@ -49,6 +57,7 @@ void init()
     }
 
     /* TODO (GM): Set explosive bits! */
+    printf("Goodbye from field init!\n");
 }
 
 void flag(const uint8_t x, const uint8_t y)

@@ -39,7 +39,9 @@ However, even though the current version requires Git Bash the task works on Git
 #### Open Taskfile Todos
 
 - TODO (GM): Find someone with a MacOs (Samu?) to test build-linux!
-- TODO (GM): Implement task for unit tests
+- TODO (GM): Implement `task test` for running all (unit) tests
+- TODO (GM): Maybe put `compile.sh` and `compile.ps1` into an e.g. `util` folder?
+- TODO (GM): Adjust build scripts and Taskfile so it goes down multiple layers into src (if required)
 - TODO: If you're feeling fancy implement a PS-only version of compile.ps1 and use it in build-windows instead of the current version.
 
 ### Building via Script
@@ -56,16 +58,27 @@ And if you do... why not just use our Taskfile?
 If you do not want to use our Taskfile (or are on an unsupported OS) and do not have access to bash you will have to build everything by yourself with a C-Compiler of your choice.
 If you're unsure how to do so a look into `compile.sh` might provide some guidance.
 
+## Testing
+
+Even though the requirement was that the whole project had to be written in C89 without any external libraries
+we still opted to include a unit test framework: [Unity](https://www.throwtheswitch.org/unity).
+
+We feel this is a fair judgement since the unit tests and therefore Unity are not required
+to run the whole project and were no requirement in the first place - they are just here to help with the quality of our "product".
+
+We opted to use Unity instead of other options, e.g. gtest, because it's written in C and not in C++
+and therefore does not introduce any more unneccessary dependencies (e.g. g++).
+Furthermore it is a fairly minimal and lightweight tool that can easily be embedded as a `git submodule`.
+The fact that we included the whole project in this repo as a submodule means that everyone that has
+access to this repo can run the tests without needing to install any more libraries.
+
+TODO (GM): Add test hook in `Taskfile.yml` and add description on how to run tests here!
+
 ## Architecture choices
 
-Describe some choices you made along the way here
+Describe some choices you made along the way here:
 
-## TODO
-
-- Add build tool (make? ninja? cmake? taskfile? custom?)
-- Also add short custom script that compiles all files via `gcc -Wall -Wextra -ansi -pedantic` and spits out an executable so the tutors are happy :)
-- Add GitHub build pipeline for branches (pull requests, master pushes) incl. build, running tests and Discord Hook for notifications
-- Add unit tests with gtest (googletest) - Needs C++ Compiler? If so -> Dependencies
+- Detail on why you stuff everything in one bit in mines.c -> Tradeoffs? Maybe run a perftest incl. memory profiler?
 
 ### Features
 

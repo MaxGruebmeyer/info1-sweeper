@@ -34,6 +34,8 @@ tasks:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'
 
+  # Currently only works when running via Git Bash
+  # If you're feeling like it, feel free to implement a powershell/cmd version as well!
   build-windows:
     platforms: [windows]
     sources:

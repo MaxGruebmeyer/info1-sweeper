@@ -15,7 +15,7 @@ tasks:
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
       - task build-linux OUTPUT_FOLDER='{{ .OUTPUT_FOLDER }}' CFLAGS='{{ .CFLAGS }}'
-      - task build-windows OUTPUT_FOLDER='{{ .OUTPUT_FOLDER }}' CFLAGS='{{ .CFLAGS }}'
+      - task build-windows-git-bash OUTPUT_FOLDER='{{ .OUTPUT_FOLDER }}' CFLAGS='{{ .CFLAGS }}'
     silent: true
 
   build-linux:
@@ -25,6 +25,7 @@ tasks:
     vars:
       CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
+    # TODO (GM): Replace these with the compile.sh script?
     cmds:
       - mkdir -p '{{ .OUTPUT_FOLDER }}'
       - for: sources
@@ -36,7 +37,7 @@ tasks:
 
   # Currently only works when running via Git Bash
   # If you're feeling like it, feel free to implement a powershell/cmd version as well!
-  build-windows:
+  build-windows-git-bash:
     platforms: [windows]
     sources:
       - src/*.c
@@ -48,6 +49,19 @@ tasks:
       - for: sources
         cmd: gcc {{ .CFLAGS }} "$(echo '{{ .ITEM }}' | sed -r 's/\\/\//')" -o "$(echo '{{ .ITEM }}' | sed -r 's/\\/\//' | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
       - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find . -type f -iwholename './{{ .OUTPUT_FOLDER }}/\*.o' | xargs echo)
+    generates:
+      - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
+      - '{{ .OUTPUT_FOLDER }}/*.o'
+
+  build-windows-ps:
+    platforms: [windows]
+    sources:
+      - src/*.c
+    vars:
+      CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
+      OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
+    cmds:
+      - Powershell.exe ./compile.ps1
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'

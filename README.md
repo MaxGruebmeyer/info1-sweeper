@@ -33,7 +33,7 @@ Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CF
 
 Note that running `task build/run` under windows requires Git Bash since we need some of the cli tools installed with it (e.g. sed, find, xargs).
 Since time was of the essence we opted to reuse the `build-shell` task instead of writing a new build task for windows in CMD/Powershell.
-But even though the current version requires Git Bash the task works on Git Bash, PowerShell as well as CMD.
+However, even though the current version requires Git Bash the task works on Git Bash, PowerShell, as well as CMD.
 
 #### Open Taskfile Todos
 

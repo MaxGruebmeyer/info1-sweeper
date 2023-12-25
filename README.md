@@ -17,7 +17,7 @@ However, we have introduced several tools to make our life easier:
 
 ### Building via Taskfile
 
-The recommended way to build our project on Windows or Linux is via our project's [Taskfile](https://taskfile.dev/).
+The recommended way to build our project on Windows (only when running via git bash) or Linux is via our project's [Taskfile](https://taskfile.dev/).
 Then you can build and run the project with a single command - `task run`.
 
 Alternatively, if you just want to build the project you can run `task build` to build the sourcecode to `./bin`.
@@ -33,10 +33,9 @@ Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CF
 
 #### Open Taskfile Todos
 
-- TODO (GM): Implement one overarching build task?
-- TODO (GM): Implement & test Windows build
+- TODO: If you're really feeling powershell and/or cmd try scripting the build-windows task so it works from CMD and Powershell and GitBash (currently only works with Git Bash)
 - TODO (GM): Find someone with a MacOs (Samu?) to test build-linux!
-- TODO (GM): Implement a run task!
+- TODO (GM): Implement task for unit tests
 
 ### Building via Bash Script
 

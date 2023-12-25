@@ -24,19 +24,8 @@ const uint8_t EXPLOSIVE_BIT = 1;
 
 uint16_t non_explosive_count = 0;
 
-static uint8_t *get_field(const uint8_t x, const uint8_t y)
-{
-    if (x >= FIELD_SIZE || y >= FIELD_SIZE) {
-        /* TODO (GM): Proper error handling! */
-        return NULL;
-    }
-
-    return &(map[x][y]);
-}
-
-static uint8_t generate_explosive_bit() {
-    return (rand() % EXPLOSION_PROBABILITY) == 0 ? EXPLOSIVE_BIT : 0;
-}
+static uint8_t *get_field(const uint8_t x, const uint8_t y);
+static uint8_t generate_explosive_bit();
 
 void init()
 {
@@ -63,7 +52,6 @@ void init()
 void flag(const uint8_t x, const uint8_t y)
 {
     /* TODO (GM): Does this work? */
-    /* TODO (GM): How to unit test in C? */
     uint8_t *field = get_field(x, y);
     *field = *field | FLAG_BIT;
 }
@@ -86,4 +74,18 @@ uint8_t open(const uint8_t x, const uint8_t y)
     }
 
     return explosive;
+}
+
+static uint8_t *get_field(const uint8_t x, const uint8_t y)
+{
+    if (x >= FIELD_SIZE || y >= FIELD_SIZE) {
+        /* TODO (GM): Proper error handling! */
+        return NULL;
+    }
+
+    return &(map[x][y]);
+}
+
+static uint8_t generate_explosive_bit() {
+    return (rand() % EXPLOSION_PROBABILITY) == 0 ? EXPLOSIVE_BIT : 0;
 }

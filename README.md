@@ -17,7 +17,7 @@ However, we have introduced several tools to make our life easier:
 
 ### Building via Taskfile
 
-The recommended way to build our project on Windows (only when running via git bash) or Linux is via our project's [Taskfile](https://taskfile.dev/).
+The recommended way to build our project on Windows or Linux is via our project's [Taskfile](https://taskfile.dev/).
 Then you can build and run the project with a single command - `task run`.
 
 Alternatively, if you just want to build the project you can run `task build` to build the sourcecode to `./bin`.
@@ -31,16 +31,24 @@ Note that this cannot handle folders containing spaces!
 
 Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CFLAGS='-ansi'`
 
+Note that running `task build/run` under windows requires Git Bash since we need some of the cli tools installed with it (e.g. sed, find, xargs).
+Since time was of the essence we opted to reuse the `build-shell` task instead of writing a new build task for windows in CMD/Powershell.
+But even though the current version requires Git Bash the task works on Git Bash, PowerShell as well as CMD.
+
 #### Open Taskfile Todos
 
-- TODO: If you're really feeling powershell and/or cmd try scripting the build-windows task so it works from CMD and Powershell and GitBash (currently only works with Git Bash)
 - TODO (GM): Find someone with a MacOs (Samu?) to test build-linux!
 - TODO (GM): Implement task for unit tests
+- TODO: If you're feeling fancy implement a PS-only version of compile.ps1 and use it in build-windows instead of the current version.
 
-### Building via Bash Script
+### Building via Script
 
 Alternatively, if you have access to Bash you can compile the whole project by running `./compile.sh` which also builds to `./bin`.
 Afterwards execute `./bin/minesweeper.out` to run the program.
+
+There is also a build script for powershell - `compile.ps1` - but that leverages Taskfile and Git Bash,
+so if you don't have both of these installed, this won't work for you.
+And if you do... why not just use our Taskfile?
 
 ### Building by hand
 

@@ -69,8 +69,8 @@ tasks:
     cmds:
       - mkdir -p '{{ .OUTPUT_FOLDER }}'
       - for: sources
-        cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o "$(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
-      - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find -type f -iwholename './{{ .OUTPUT_FOLDER }}/*.o' | xargs echo)
+        cmd: gcc {{ .CFLAGS }} "$(echo '{{ .ITEM }}' | sed -r 's/\\/\//')" -o "$(echo '{{ .ITEM }}' | sed -r 's/\\/\//' | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
+      - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find './{{ .OUTPUT_FOLDER }}' -type f -iwholename '*.o' | xargs echo)
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'

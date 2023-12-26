@@ -9,7 +9,7 @@ Short summary: Lorem ispum dolor sed...
 Since the core of the project is written in C89 only using the stdlibs, GCC is really all you need.
 However, we have introduced several tools to make our life easier:
 
-- Taskfile: Used by us for platform-independent builds. You can learn how to install Taskfile [here](https://taskfile.dev/installation/).
+- [Taskfile](https://taskfile.dev/): Used by us for platform-independent builds. You can learn how to install Taskfile [here](https://taskfile.dev/installation/).
 However, we recommend the following ways:
   - For Windows: Install it using [Chocolatey](https://chocolatey.org/) - everyone's favorite package manager for windows - via `choco install go-task`
   - For Linux/MacOS: Install it using [Brew](https://brew.sh/) via `brew install go-task`

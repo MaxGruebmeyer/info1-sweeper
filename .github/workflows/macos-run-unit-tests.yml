@@ -8,6 +8,6 @@ jobs:
       - name: install submodules
         run: git submodule update --init
       - name: install go-task
-        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
+        run: brew install go-task
       - name: task test
         run: task test

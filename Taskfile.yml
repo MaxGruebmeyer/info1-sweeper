@@ -60,6 +60,22 @@ tasks:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'
 
+  test:
+    cmds:
+      - task test-linux
+      - task test-windows
+    silent: true
+
+  test-linux:
+    platforms: [linux]
+    cmds:
+      - task test-shell
+
+  test-windows:
+    platforms: [windows]
+    cmds:
+      - echo "Not yet implemented :("
+
   test-shell:
     cmds:
       - ./test/run-tests.sh

@@ -1,4 +1,4 @@
-name: compile-check
+name: ubuntu-compile-check
 on: [push]
 jobs:
   my-job:

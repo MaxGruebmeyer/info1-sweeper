@@ -15,6 +15,9 @@
  *
  * Needs to be called before calling any other method.
  * Not calling it beforehand results in undefined behaviour!
+ *
+ * Note that if the map is not exactly the size of x*y
+ * calling this method leads to undefined behaviour!
  */
 void init(uint8_t **map, const uint8_t x, const uint8_t y);
 

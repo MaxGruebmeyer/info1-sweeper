@@ -59,3 +59,7 @@ tasks:
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'
+
+  test-shell:
+    cmds:
+      - ./test/run-tests.sh

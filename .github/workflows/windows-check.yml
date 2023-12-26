@@ -1,4 +1,4 @@
-name: windows-run-unit-tests
+name: windows-check
 on: [push]
 jobs:
   my-job:

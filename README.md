@@ -13,6 +13,11 @@ However, we have introduced several tools to make our life easier:
 However, we recommend the following ways:
   - For Windows: Install it using [Chocolatey](https://chocolatey.org/) - everyone's favorite package manager for windows - via `choco install go-task`
   - For Linux/MacOS: Install it using [Brew](https://brew.sh/) via `brew install go-task`
+- [Unity](https://www.throwtheswitch.org/unity): A lightweight unit tests framework for (embedded) C.
+We included it via a submodule, just load it via `git submodule update --init` and you're good to go.
+
+We feel these are perfectly fine choices since our core product is still pure C89 -
+these tools just make our developer life a whole lot easier but you don't really need them to run & use our program: GCC is all you need!
 
 ## Building & running
 
@@ -63,6 +68,10 @@ and therefore does not introduce any more unneccessary dependencies (e.g. g++).
 Furthermore it is a fairly minimal and lightweight tool that can easily be embedded as a `git submodule`.
 The fact that we included the whole project in this repo as a submodule means that everyone that has
 access to this repo can run the tests without needing to install any more libraries.
+
+Since it's included as a submodule you need to load the submodule via `git submodule update --init` before executing the tests for the first time.
+You only need to do this once, afterwards the submodule is stored locally.
+Not loading the submodule beforehand will result in missing files and test compilation will fail!
 
 You can use any of the following ways to run the tests:
 

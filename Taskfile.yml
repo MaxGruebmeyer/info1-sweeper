@@ -74,7 +74,7 @@ tasks:
   test-windows:
     platforms: [windows]
     cmds:
-      - echo "Not yet implemented :("
+      - Powershell.exe ./util/run-tests.ps1
 
   test-shell:
     cmds:

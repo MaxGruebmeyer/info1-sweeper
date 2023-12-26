@@ -1,5 +1,8 @@
 #include <stdlib.h>
 
+/* TODO (GM): Remove */
+#include <stdio.h>
+
 #include "../src/mines.h"
 #include "Unity/src/unity.h"
 
@@ -14,8 +17,11 @@ void setUp(void)
 
     /* TODO (GM): Test this with an array later as well! */
     test_map = malloc(MAXIMUM_X);
+    TEST_ASSERT_NOT_NULL(test_map);
+
     for (i = 0; i < MAXIMUM_X; i++) {
         test_map[i] = malloc(MAXIMUM_Y);
+        TEST_ASSERT_NOT_NULL(test_map[i]);
     }
 
     init(test_map, MAXIMUM_X, MAXIMUM_Y);
@@ -25,10 +31,17 @@ void tearDown(void)
 {
     int i = 0;
     for (; i < MAXIMUM_X; i++) {
-        free(test_map[i]);
+        printf("%i: %p\n", i, test_map[i]);
+
+        /* TODO (GM): Why does this result in a double free? */
+        /* free(test_map[i]); */
+        test_map[i] = NULL;
     }
 
+    printf("Last one!\n");
     free(test_map);
+    test_map = NULL;
+    printf("After Last one!\n");
 }
 
 /* TODO (GM): Replace this with a real test later */

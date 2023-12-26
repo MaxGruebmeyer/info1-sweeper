@@ -14,7 +14,7 @@ However, we recommend the following ways:
   - For Windows: Install it using [Chocolatey](https://chocolatey.org/) - everyone's favorite package manager for windows - via `choco install go-task`
   - For Linux/MacOS: Install it using [Brew](https://brew.sh/) via `brew install go-task`
 - [Unity](https://www.throwtheswitch.org/unity): A lightweight unit tests framework for (embedded) C.
-We included it via a submodule, just load it via `git submodule update --init` and you're good to go.
+We included it as a [submodule](https://github.com/ThrowTheSwitch/Unity), just load it via `git submodule update --init` and you're good to go.
 
 We feel these are perfectly fine choices since our core product is still pure C89 -
 these tools just make our developer life a whole lot easier but you don't really need them to run & use our program: GCC is all you need!

@@ -80,6 +80,11 @@ You can use any of the following ways to run the tests:
 - Use either of `util/run-tests.sh` or `util/run-tests.ps1`
 - Manually compile and run each test file seperately (each file contains a main function)
 
+Note that all of the above (apart from the manual compilation) need a Unix shell of some sort.
+If your host is a Linux or MacOS system that will not be a problem.
+If you're running windows you'll need Git Bash, otherwise this won't work.
+But since this is a git project Git Bash should already be installed anyways.
+
 ## Github Actions
 
 Since we are a fan of automated testing and want to confidently support a wide variety of operating systems we implemented

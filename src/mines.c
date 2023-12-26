@@ -1,13 +1,12 @@
-/* TODO (GM): Remove stdio header and print statements here! -> Introduce real logging? */
-#include <stdio.h>
+/* TODO (GM): Introduce real logging! */
 #include <stdlib.h>
 #include <stdint.h>
-#include <time.h>
 
 #include "mines.h"
+#include "mines-initializer.h"
 
-#define FIELD_SIZE 3
-#define EXPLOSION_PROBABILITY 4
+uint8_t maximum_x = 0;
+uint8_t maximum_y = 0;
 
 /*
  * Field structure:
@@ -16,76 +15,68 @@
  * - 1 Bit for flag yes/no (1/0)
  * - 1 Bit for explosive yes/no (1/0)
  */
-uint8_t map[FIELD_SIZE][FIELD_SIZE];
+uint8_t **map;
 
 const uint8_t OPEN_BIT = 1 << 2;
 const uint8_t FLAG_BIT = 1 << 1;
 const uint8_t EXPLOSIVE_BIT = 1;
 
-uint16_t non_explosive_count = 0;
-
 static uint8_t *get_field(const uint8_t x, const uint8_t y);
-static uint8_t generate_explosive_bit();
 
-void init()
+void init(uint8_t **cur_map, const uint8_t x, const uint8_t y)
 {
-    int i = 0;
+    maximum_x = x;
+    maximum_y = y;
 
-    /* TODO (GM): Only here to test compilation - remove later! */
-    printf("Hello from field init!\n");
+    map = cur_map;
+    init_map(map, x, y);
 
-    for (; i < FIELD_SIZE; i++) {
-        int j = 0;
-        for (; j < FIELD_SIZE; j++) {
-            map[i][j] = generate_explosive_bit();
-
-            if (!(map[i][j] & EXPLOSIVE_BIT)) {
-                non_explosive_count++;
-            }
-        }
-    }
-
-    /* TODO (GM): Set explosive bits! */
-    printf("Goodbye from field init!\n");
+    /* TODO (GM): Add bits detailling how many neighbouring fields contain explosives! */
 }
 
-void flag(const uint8_t x, const uint8_t y)
+uint8_t flag(const uint8_t x, const uint8_t y)
 {
     /* TODO (GM): Does this work? */
     uint8_t *field = get_field(x, y);
-    *field = *field | FLAG_BIT;
-}
-
-void unflag(const uint8_t x, const uint8_t y)
-{
-    uint8_t *field = get_field(x, y);
-    *field = *field & (~FLAG_BIT);
-}
-
-uint8_t open(const uint8_t x, const uint8_t y)
-{
-    uint8_t explosive;
-    uint8_t *field = get_field(x, y);
-    *field = *field | OPEN_BIT;
-
-    explosive = *field & EXPLOSIVE_BIT;
-    if (!explosive) {
-        non_explosive_count--;
+    if (!field) {
+        return 0;
     }
 
-    return explosive;
+    *field = *field | FLAG_BIT;
+    return 1;
+}
+
+uint8_t unflag(const uint8_t x, const uint8_t y)
+{
+    uint8_t *field = get_field(x, y);
+    if (!field) {
+        return 0;
+    }
+
+    *field = *field & (~FLAG_BIT);
+    return 1;
+}
+
+void open(uint8_t *result, const uint8_t x, const uint8_t y)
+{
+    uint8_t *field = get_field(x, y);
+
+    /* TODO (GM): Can the brackets here be removed? */
+    if (!field || (*field & FLAG_BIT)) {
+        result = NULL;
+        return;
+    }
+
+    /* TODO (GM): Check neighbouring fields and open them as well if they have no explosives nearby! */
+    *result = (*field = *field | OPEN_BIT) & EXPLOSIVE_BIT;
 }
 
 static uint8_t *get_field(const uint8_t x, const uint8_t y)
 {
-    if (x >= FIELD_SIZE || y >= FIELD_SIZE) {
-        /* TODO (GM): Proper error handling! */
+    if (x >= maximum_x || y >= maximum_y) {
+        /* TODO (GM): Logging here! */
         return NULL;
     }
 
     return &(map[x][y]);
-}
-
-static uint8_t generate_explosive_bit() {
-    return (rand() % EXPLOSION_PROBABILITY) == 0 ? EXPLOSIVE_BIT : 0;
 }

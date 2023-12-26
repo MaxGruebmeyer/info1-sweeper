@@ -12,7 +12,7 @@ However, we have introduced several tools to make our life easier:
 - Taskfile: Used by us for platform-independent builds. You can learn how to install Taskfile [here](https://taskfile.dev/installation/).
 However, we recommend the following ways:
   - For Windows: Install it using [Chocolatey](https://chocolatey.org/) - everyone's favorite package manager for windows - via `choco install go-task`
-  - For Linux: Install it using [Brew](https://brew.sh/) via `brew install go-task`
+  - For Linux/MacOS: Install it using [Brew](https://brew.sh/) via `brew install go-task`
 
 ## Building & running
 
@@ -35,14 +35,6 @@ Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CF
 Note that running `task build/run` under windows requires Git Bash since we need some of the cli tools installed with it (e.g. sed, find, xargs).
 Since time was of the essence we opted to reuse the `build-shell` task instead of writing a new build task for windows in CMD/Powershell.
 However, even though the current version requires Git Bash the task works on Git Bash, PowerShell, as well as CMD.
-
-#### Open Taskfile Todos
-
-- TODO (GM): Find someone with a MacOs (Samu?) to test build-linux!
-- TODO (GM): Implement `task test` for running all (unit) tests
-- TODO (GM): Maybe put `compile.sh` and `compile.ps1` into an e.g. `util` folder?
-- TODO (GM): Adjust build scripts and Taskfile so it goes down multiple layers into src (if required)
-- TODO: If you're feeling fancy implement a PS-only version of compile.ps1 and use it in build-windows instead of the current version.
 
 ### Building via Script
 
@@ -72,7 +64,23 @@ Furthermore it is a fairly minimal and lightweight tool that can easily be embed
 The fact that we included the whole project in this repo as a submodule means that everyone that has
 access to this repo can run the tests without needing to install any more libraries.
 
-TODO (GM): Add test hook in `Taskfile.yml` and add description on how to run tests here!
+You can use any of the following ways to run the tests:
+
+- Use `task test` (recommended)
+- Use either of `util/run-tests.sh` or `util/run-tests.ps1`
+- Manually compile and run each test file seperately (each file contains a main function)
+
+## Github Actions
+
+Since we are a fan of automated testing and want to confidently support a wide variety of operating systems we implemented
+the following two hooks on Ubuntu, Windows, as well as MacOS runners:
+
+- compile-check: Leverages `task build` to verify that the program can be built without errors on the target platform
+- run-unit-tests: Leverages `task test` to verify all tests pass on the target platform
+
+All of these are push hooks which means they run on every push to the remote repository - it doesn't matter which branch.
+
+As all github actions, you can find the .yml files under `.github/workflows`.
 
 ## Architecture choices
 
@@ -80,15 +88,7 @@ Describe some choices you made along the way here:
 
 - Detail on why you stuff everything in one bit in mines.c -> Tradeoffs? Maybe run a perftest incl. memory profiler?
 
-### Features
+## Open Todos
 
-- Make minesweeper field non-quadratic
-- Allow configuration of field size via cmd args but limit it to 80x24 characters (and therefore a smaller or equal field?) -> Do we need additional chars, e.g. like in chess? Then the board would have to be smaller still!
-- First field clicked should never return an explosive(?)
-- Additional features as specified in the exercise
-
-### Optional features for later
-
-- Give the user an additional life, if he solves a floating point number conversion -> Needs floating point conversion tool!
-- Make a web interface without any additional libraries via the unistd socket api and text templating into an html document -> Needs own webserver and templating engine at least. Can one do it without JS? Make sure to limit potential attack vectors in the backend! -> Sanitize user input, as little memory allocation as possible (buffer overflow...), limit permissions and run everything in a docker container (without mounts and in a seperate network if possible)
-- Host said web interface on AWS incl. automatic deployment on successful CI with terraform IaC
+- TODO (GM): Adjust build scripts and Taskfile so it goes down multiple layers into src (if required)
+- TODO: If you're feeling fancy implement a PS-only version of compile.ps1 and use it in build-windows instead of the current version.

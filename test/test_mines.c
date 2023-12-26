@@ -39,7 +39,10 @@ void tearDown(void)
     }
 
     printf("Last one!\n");
-    free(test_map);
+
+    /* TODO (GM): Why does this free lead to an exit code 127 on windows? */
+    /* free(test_map); */
+
     test_map = NULL;
     printf("After Last one!\n");
 }

@@ -14,5 +14,7 @@ jobs:
           iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
       - name: install go-task
         run: choco install go-task
+      - name: task build
+        run: task build
       - name: task test
         run: task test

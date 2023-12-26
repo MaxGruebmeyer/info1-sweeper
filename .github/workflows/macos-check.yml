@@ -1,11 +1,15 @@
-name: macos-compile-check
+name: macos-run-unit-tests
 on: [push]
 jobs:
   my-job:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - name: install submodules
+        run: git submodule update --init
       - name: install go-task
         run: brew install go-task
       - name: task build
         run: task build
+      - name: task test
+        run: task test

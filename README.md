@@ -88,11 +88,8 @@ But since this is a git project Git Bash should already be installed anyways.
 ## Github Actions
 
 Since we are a fan of automated testing and want to confidently support a wide variety of operating systems we implemented
-the following two hooks on Ubuntu, Windows, as well as MacOS runners:
-
-- compile-check: Leverages `task build` to verify that the program can be built without errors on the target platform
-- run-unit-tests: Leverages `task test` to verify all tests pass on the target platform
-
+a hook leveraging `task build` and `task test` to verify the program can be built and all tests pass for the target platform.
+This hook was implemented 3 times: Once for Windows, once for Linux (Ubuntu) and once for MacOS.
 All of these are push hooks which means they run on every push to the remote repository - it doesn't matter which branch.
 
 As all github actions, you can find the .yml files under `.github/workflows`.

@@ -11,8 +11,10 @@ void tearDown(void)
     /* Put cleanup calls here */
 }
 
+/* TODO (GM): Put a real test here later! */
 void test_init_map(void)
 {
+    TEST_ASSERT_EQUAL(1, 1);
 }
 
 int main(void)

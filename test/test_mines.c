@@ -10,9 +10,9 @@ uint8_t **test_map;
 
 void setUp(void)
 {
-    int i = 0;
+    int i;
 
-    /* Put setup calls here */
+    /* TODO (GM): Test this with an array later as well! */
     test_map = malloc(MAXIMUM_X);
     for (i = 0; i < MAXIMUM_X; i++) {
         test_map[i] = malloc(MAXIMUM_Y);
@@ -23,7 +23,12 @@ void setUp(void)
 
 void tearDown(void)
 {
-    /* Put cleanup calls here */
+    int i = 0;
+    for (; i < MAXIMUM_X; i++) {
+        free(test_map[i]);
+    }
+
+    free(test_map);
 }
 
 /* TODO (GM): Replace this with a real test later */
@@ -48,7 +53,6 @@ int main(void)
 {
     UNITY_BEGIN();
 
-    /* TODO (GM): Can we use e.g. reflection to call all functions in this file? */
     RUN_TEST(bullshit_test);
 
     UNITY_END();

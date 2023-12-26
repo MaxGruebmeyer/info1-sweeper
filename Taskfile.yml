@@ -19,7 +19,7 @@ tasks:
     silent: true
 
   build-linux:
-    platforms: [linux]
+    platforms: [linux, darwin]
     sources:
       - src/*.c
     vars:
@@ -67,7 +67,7 @@ tasks:
     silent: true
 
   test-linux:
-    platforms: [linux]
+    platforms: [linux, darwin]
     cmds:
       - task test-shell
 

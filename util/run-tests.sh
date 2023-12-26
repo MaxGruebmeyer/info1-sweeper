@@ -9,6 +9,8 @@ for file in $dir/../src/*.c; do
     fi
 done
 
+mkdir -p "$testdir/bin"
+
 success=0
 for file in $testdir/*.c; do
     sanitized_testdir="$(echo $testdir | sed 's/\//\\\//g' | sed 's/\./\\\./g')"

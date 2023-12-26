@@ -7,7 +7,7 @@ dir=$(dirname ${BASH_SOURCE[0]})
 original=$(pwd)
 out='bin'
 
-cd $dir
+cd "$dir/.."
 mkdir -p $out
 
 compile_cmd="gcc $cflags -o $out/minesweeper.out"

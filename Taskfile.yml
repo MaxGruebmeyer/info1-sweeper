@@ -39,7 +39,7 @@ tasks:
       CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
-      - Powershell.exe ./compile.ps1
+      - Powershell.exe ./util/compile.ps1
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'
@@ -78,4 +78,4 @@ tasks:
 
   test-shell:
     cmds:
-      - ./test/run-tests.sh
+      - ./util/run-tests.sh

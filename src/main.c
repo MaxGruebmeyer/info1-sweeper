@@ -16,7 +16,7 @@ void print_map(uint8_t **map, const uint8_t x, const uint8_t y)
     }
 }
 
-int main()
+int main(void)
 {
     int i = 0;
     uint8_t x = 3;

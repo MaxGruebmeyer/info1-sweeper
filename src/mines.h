@@ -3,10 +3,6 @@
 
 #include <stdint.h>
 
-/* TODO (GM): Support non-quadratic fields as well! */
-#define FIELD_SIZE 3
-#define EXPLOSION_PROBABILITY 4
-
 /*
  * Inits the passed map of the specified size.
  * Also saves x, y and especially the map locally.

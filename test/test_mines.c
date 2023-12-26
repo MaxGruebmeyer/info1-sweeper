@@ -1,10 +1,24 @@
+#include <stdlib.h>
+
 #include "../src/mines.h"
 #include "Unity/src/unity.h"
 
+#define MAXIMUM_X 4
+#define MAXIMUM_Y 5
+
+uint8_t **test_map;
+
 void setUp(void)
 {
+    int i = 0;
+
     /* Put setup calls here */
-    init();
+    test_map = malloc(MAXIMUM_X);
+    for (i = 0; i < MAXIMUM_X; i++) {
+        test_map[i] = malloc(MAXIMUM_Y);
+    }
+
+    init(test_map, MAXIMUM_X, MAXIMUM_Y);
 }
 
 void tearDown(void)
@@ -16,10 +30,11 @@ void tearDown(void)
 void bullshit_test(void)
 {
     int i = 0;
-    for ( ; i < FIELD_SIZE; i++) {
+    for ( ; i < MAXIMUM_X; i++) {
         int j = 0;
-        for ( ; j < FIELD_SIZE; j++) {
-            int explosive = open(i, j);
+        for ( ; j < MAXIMUM_Y; j++) {
+            uint8_t explosive = 0;
+            open(&explosive, i, j);
 
             /* TODO (GM): Replace this with real assertions! */
             if (explosive) {

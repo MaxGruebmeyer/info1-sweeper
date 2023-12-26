@@ -7,5 +7,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: install go-task
         run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
-      - name: task-build
+      - name: task build
         run: task build

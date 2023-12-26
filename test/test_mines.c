@@ -68,5 +68,5 @@ int main(void)
 
     RUN_TEST(bullshit_test);
 
-    UNITY_END();
+    return UNITY_END();
 }

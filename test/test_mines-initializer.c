@@ -23,5 +23,5 @@ int main(void)
 
     RUN_TEST(test_init_map);
 
-    UNITY_END();
+    return UNITY_END();
 }

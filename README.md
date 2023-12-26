@@ -106,4 +106,6 @@ Describe some choices you made along the way here:
 ## Open Todos
 
 - TODO (GM): Adjust build scripts and Taskfile so it goes down multiple layers into src (if required)
+- TODO (GM): If you have too much time on your hands implement a dev container containing e.g. go-task, the submodule and some filemounts
+based on an Ubuntu image to support all of the people who don't want to install our tooling
 - TODO: If you're feeling fancy implement a PS-only version of compile.ps1 and use it in build-windows instead of the current version.

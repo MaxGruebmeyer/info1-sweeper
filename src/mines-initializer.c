@@ -4,7 +4,7 @@
 
 #include "mines-initializer.h"
 
-void init_map(uint8_t **map, uint8_t x, uint8_t y)
+void init_map(uint8_t **map, const uint8_t x, const uint8_t y)
 {
     int i = 0;
     srand(time(NULL));

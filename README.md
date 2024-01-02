@@ -9,8 +9,9 @@ Short summary: Lorem ispum dolor sed...
 Since the core of the project is written in C89 only using the stdlibs, GCC is really all you need.
 However, we have introduced several tools to make our life easier:
 
-- Taskfile: Used by us for platform-independent builds. You can learn how to install Taskfile [here](https://taskfile.dev/installation/). We recommend the following options:
-  - For Windows: Install it using [Chocolatey](https://chocolatey.org/) via `choco install go-task`
+- Taskfile: Used by us for platform-independent builds. You can learn how to install Taskfile [here](https://taskfile.dev/installation/).
+However, we recommend the following ways:
+  - For Windows: Install it using [Chocolatey](https://chocolatey.org/) - everyone's favorite package manager for windows - via `choco install go-task`
   - For Linux: Install it using [Brew](https://brew.sh/) via `brew install go-task`
 
 ## Building & running
@@ -25,23 +26,30 @@ This also creates the executable `./bin/minesweeper.out`, which you can use to r
 
 Optionally you can pass the following parameters to `task build` or `task run`:
 
-- OUTPUT_FOLDER: The folder to build to. Falls back to the $OUTPUT_FOLDER environment variable or 'bin' if no environment variable is set.
+- `OUTPUT_FOLDER`: The folder to build to. Falls back to the `$OUTPUT_FOLDER` environment variable or `bin` if no environment variable is set.
 Note that this cannot handle folders containing spaces!
-- CFLAGS: The compiler flags to use. Falls back to the $CFLAGS environment variable or '-Wall -Wextra -Werror -ansi -pedantic' if no environment variable is set.
+- `CFLAGS`: The compiler flags to use. Falls back to the `$CFLAGS` environment variable or `-Wall -Wextra -Werror -ansi -pedantic` if no environment variable is set.
 
 Provide them in the following way: `task run OUTPUT_FOLDER='my-output-folder' CFLAGS='-ansi'`
 
+Note that running `task build/run` under windows requires Git Bash since we need some of the cli tools installed with it (e.g. sed, find, xargs).
+Since time was of the essence we opted to reuse the `build-shell` task instead of writing a new build task for windows in CMD/Powershell.
+However, even though the current version requires Git Bash the task works on Git Bash, PowerShell, as well as CMD.
+
 #### Open Taskfile Todos
 
-- TODO (GM): Implement one overarching build task?
-- TODO (GM): Implement & test Windows build
 - TODO (GM): Find someone with a MacOs (Samu?) to test build-linux!
-- TODO (GM): Implement a run task!
+- TODO (GM): Implement task for unit tests
+- TODO: If you're feeling fancy implement a PS-only version of compile.ps1 and use it in build-windows instead of the current version.
 
-### Building via Bash Script
+### Building via Script
 
 Alternatively, if you have access to Bash you can compile the whole project by running `./compile.sh` which also builds to `./bin`.
 Afterwards execute `./bin/minesweeper.out` to run the program.
+
+There is also a build script for powershell - `compile.ps1` - but that leverages Taskfile and Git Bash,
+so if you don't have both of these installed, this won't work for you.
+And if you do... why not just use our Taskfile?
 
 ### Building by hand
 
@@ -51,10 +59,6 @@ If you're unsure how to do so a look into `compile.sh` might provide some guidan
 ## Architecture choices
 
 Describe some choices you made along the way here
-
-## Dependencies
-
-Deps needed for building, testing and running go here!
 
 ## TODO
 

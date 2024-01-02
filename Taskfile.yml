@@ -26,10 +26,7 @@ tasks:
       CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
-      - mkdir -p '{{ .OUTPUT_FOLDER }}'
-      - for: sources
-        cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o "$(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
-      - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find -type f -iwholename './{{ .OUTPUT_FOLDER }}/*.o' | xargs echo)
+      - task build-shell
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'
@@ -42,12 +39,23 @@ tasks:
       CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
       OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
     cmds:
+      - Powershell.exe ./compile.ps1
+    generates:
+      - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
+      - '{{ .OUTPUT_FOLDER }}/*.o'
+
+  build-shell:
+    # No platform restriction, might also be run on windows under e.g. git bash
+    sources:
+      - src/*.c
+    vars:
+      CFLAGS: '{{ default "-Wall -Wextra -Werror -ansi -pedantic" .CFLAGS }}'
+      OUTPUT_FOLDER: '{{ default "bin" .OUTPUT_FOLDER }}'
+    cmds:
       - mkdir -p '{{ .OUTPUT_FOLDER }}'
-        # TODO (GM): Implement for windows!
-        # - for: sources
-        #   cmd: gcc {{ .CFLAGS }} {{ .ITEM }} -o "$(echo {{ .ITEM }} | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
-        # - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find -type f -iwholename './{{ .OUTPUT_FOLDER }}/*.o' | xargs echo)
-      - echo 'Windows-Build is currently not implemented!'
+      - for: sources
+        cmd: gcc {{ .CFLAGS }} "$(echo '{{ .ITEM }}' | sed -r 's/\\/\//')" -o "$(echo '{{ .ITEM }}' | sed -r 's/\\/\//' | sed -r 's/\.c$/\.o/' | sed 's/src/{{ .OUTPUT_FOLDER }}/')" -c
+      - gcc {{ .CFLAGS }} -o '{{ .OUTPUT_FOLDER }}/minesweeper.out' $(find './{{ .OUTPUT_FOLDER }}' -type f -iwholename '*.o' | xargs echo)
     generates:
       - '{{ .OUTPUT_FOLDER }}/minesweeper.out'
       - '{{ .OUTPUT_FOLDER }}/*.o'
